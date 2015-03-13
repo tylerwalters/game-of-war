@@ -1,0 +1,24 @@
+{
+  "name": "game-of-war",
+  "version": "0.0.1",
+  "author": "Tyler Walters <tyler@tylerwalters.com",
+  "description": "A JavaScript version of the card game War running on Node.js",
+  "keywords": [
+    "cards",
+    "game"
+  ],
+  "homepage": "https://github.com/tylerwalters/game-of-war",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tylerwalters/game-of-war.git"
+  },
+  "scripts": {
+    "prepublish": "gulp",
+    "test": "gulp test"
+  },
+  "main": "dist/war.min.js",
+  "dependencies": {
+    "prompt": "^0.2.14"
+  }
+}
