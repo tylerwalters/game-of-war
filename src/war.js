@@ -60,6 +60,8 @@ var War = (function () {
 		_log(winner + ' is the winner in ' + _turn + ' turns!');
 
 		_stream.end();
+
+		console.log('Output game log in output/war_' + _gameID + '.txt.');
 	};
 
 	/**
