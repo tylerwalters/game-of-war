@@ -1,8 +1,16 @@
 var Player = require('./modules/player'),
-		deck = require('./modules/deck'),
-		setup = require('./modules/setup');
+		Deck = require('./modules/deck'),
+		war = require('./modules/war'),
+		playerOne, playerTwo, cards;
 
-var playerOne = new Player(),
-		playerTwo = new Player();
+playerOne = new Player('Player 1'),
+playerTwo = new Player('Player 2');
+deck = new Deck();
 
-setup(playerOne, playerTwo);
+deck.build();
+deck.shuffle();
+deck.deal(playerOne, playerTwo);
+
+war.setup(playerOne, playerTwo);
+war.title();
+war.start();
