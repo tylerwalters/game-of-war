@@ -1,8 +1,8 @@
 {
   "name": "game-of-war",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Tyler Walters <tyler@tylerwalters.com",
-  "description": "A JavaScript version of the card game War running on Node.js",
+  "description": "A JavaScript simulation of the card game War running on Node.js",
   "keywords": [
     "cards",
     "game"
@@ -14,9 +14,10 @@
     "url": "https://github.com/tylerwalters/game-of-war.git"
   },
   "main": "src/war.js",
-  "dependencies": {
-    "promise": "~6.1.0"
+  "scripts": {
+  	"start": "node src/war"
   },
+  "dependencies": {},
   "devDependencies": {
     "mermaid": "~0.4.0"
   }
