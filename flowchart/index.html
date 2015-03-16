@@ -8,11 +8,11 @@
 <body>
 	<div class="mermaid">
 		graph TD
-			A(introduce player 1 and player 2) --> B(get deck of cards)
+			A(add player 1 and player 2) --> B(get deck of cards)
 			B --> C(shuffle cards)
 			C --> D(deal cards to each player)
 			D --> E(check that each player has cards)
-			E -- both players still have cards --> F(each player turns over a card)
+			E -- both players still have cards --> F(each player plays a card)
 			E -- one player is out of cards --> G(declare victory for player with cards remaining)
 			F -- player 1's card is higher than player 2's --> H(player 1 collects cards on table)
 			F -- player 2's card is higher than player 1's --> I(player 2 collects cards on table)
@@ -20,8 +20,11 @@
 			H --> E
 			I --> E
 			J -- both players have cards available --> K(each player adds a card face down)
-			J -- one player has no cards remaining --> L
+			J -- one player has one card remaining --> L(one player adds a card face down)
+			J -- one player has no cards remaining --> M(one player plays a card face down, the other player holds onto their card to play)
 			K --> F
+			L --> F
+			M --> M
 	</div>
 	<script src="../node_modules/mermaid/dist/mermaid.full.min.js"></script>
 </body>
