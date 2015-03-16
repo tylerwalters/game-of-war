@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Game of War Flowchart</title>
+	<link rel="stylesheet" href="../node_modules/mermaid/dist/mermaid.forest.css">
+</head>
+<body>
+	<div class="mermaid">
+		graph TD
+			A(introduce player 1 and player 2) --> B(get deck of cards)
+			B --> C(shuffle cards)
+			C --> D(deal cards to each player)
+			D --> E(check that each player has cards)
+			E -- both players still have cards --> F(each player turns over a card)
+			E -- one player is out of cards --> G(declare victory for player with cards remaining)
+			F -- player 1's card is higher than player 2's --> H(player 1 collects cards on table)
+			F -- player 2's card is higher than player 1's --> I(player 2 collects cards on table)
+			F -- cards are equal value --> J(War!)
+			H --> E
+			I --> E
+			J -- both players have cards available --> K(each player adds a card face down)
+			J -- one player has no cards remaining --> L
+			K --> F
+	</div>
+	<script src="../node_modules/mermaid/dist/mermaid.full.min.js"></script>
+</body>
+</html>
