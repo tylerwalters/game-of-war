@@ -61,7 +61,7 @@ var War = (function () {
 
 		_stream.end();
 
-		console.log('Output game log in output/war_' + _gameID + '.txt.');
+		console.log('Output game log to output/war_' + _gameID + '.txt.');
 	};
 
 	/**
