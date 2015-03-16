@@ -1,11 +1,8 @@
-var prompt = require('prompt');
-
 /** 
-	* Player class with properties and methods for each player.
+	* Creates a new Player.
 	* 
-	* @namespace Player
+	* @class Player
 	*/
-
 module.exports = function (name) {
 	'use strict';
 
@@ -14,10 +11,6 @@ module.exports = function (name) {
 	this.name = name;
 	this.cards = [];
 
-	this.setCards = function (dealtCards) {
-		this.cards = dealtCards;
-	}
-
 	/**
 		* Adds new cards to player's hand after winning a turn.
 		* 
@@ -25,10 +18,20 @@ module.exports = function (name) {
 		* 
 		* @memberof Player
 		*/
+	this.addCards = function (cards) {
+		// Shuffles the cards before adding them to the hand to simulate picking up
+		// a disorganized pile of cards.
+		this.shuffle(cards);
+		this.cards = this.cards.concat(cards);
+	};
+
+	/**
+		* Plays the next card in the player's hand.
+		* 
+		* @memberof Player
+		*/
 	this.playCard = function () {
 		var card;
-
-		if (++turn % 26 === 0) this.shuffle();
 		
 		card = this.cards[0];
 		this.cards.splice(this.cards.indexOf(card), 1);
@@ -37,16 +40,33 @@ module.exports = function (name) {
 	};
 
 	/**
-		* Adds new cards to player's hand after winning a turn.
+		* Shuffles the cards using the Fisher-Yaters shuffle algorithm.
 		* 
-		* @param {Array} collectedCards An array of cards to be added to players hand
+		* @param {Array} players An array containing each of the cards
 		* 
 		* @memberof Player
 		*/
-	this.addCards = function (card) {
-		this.cards.push(card);
+	this.shuffle = function (cards) {
+		var current = cards.length,
+				temp, random;
+
+		while (current) {
+			random = Math.floor(Math.random() * current--);
+			temp = cards[current];
+			cards[current] = cards[random];
+			cards[random] = temp;
+		}
 	};
 
+	/**
+		* In the event of a War, checks how many cards are available in the player's
+		* hand. If enough cards are available it plays one card face down and one
+		* face up. If only one card is available that card is played face up. 
+		* Returns nothing if the player's hand is empty and the last played card is
+		* used.
+		* 
+		* @memberof Player
+		*/
 	this.war = function () {
 		var stack = [];
 
@@ -61,17 +81,5 @@ module.exports = function (name) {
 		}
 
 		return stack;
-	}
-
-	this.shuffle = function () {
-		var current = this.cards.length,
-				temp, random;
-
-		while (current) {
-			random = Math.floor(Math.random() * current--);
-			temp = this.cards[current];
-			this.cards[current] = this.cards[random];
-			this.cards[random] = temp;
-		}
 	};
 };
