@@ -1,13 +1,18 @@
+/** 
+	* Creates a new Card.
+	* 
+	* @class Card
+	*/
 var Card = function (rank, suit, value) {
 	this.rank = rank;
 	this.suit = suit;
 	this.value = value;
-}
+};
 
 /** 
-	* Controller for the deck of cards.
+	* Creates a new Deck of Cards.
 	* 
-	* @namespace Deck
+	* @class Deck
 	*/
 
 module.exports = function () {
@@ -15,6 +20,11 @@ module.exports = function () {
 
 	this.cards = [];
 
+	/**
+		* Builds a standard deck of 52 cards.
+		* 
+		* @memberof Deck
+		*/
 	this.build = function () {
 		var ranks = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King'],
 				suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'],
@@ -25,16 +35,18 @@ module.exports = function () {
 			ranks.forEach(function (rankEle, rankIdx) {
 				var card = new Card(rankEle, suitEle, values[rankIdx]);
 				cards.push(card);
-			})
-		})
+			});
+		});
 
 		this.cards = cards;
-	}
+	};
 
 	/**
-		* Adds a new product to the compare products bank on the product list page.
+		* Deals out the cards between two players. Alternates between players to
+		* simulate a real deal.
 		* 
-		* @param {Array} players An array containing each of the players
+		* @param {Object} player1 The first Player object
+		* @param {Object} player2 The second Player object
 		* 
 		* @memberof Deck
 		*/
@@ -43,17 +55,20 @@ module.exports = function () {
 				hand2 = [];
 
 		this.cards.forEach(function (ele, idx) {
-			(idx % 2 !== 0) ? hand1.push(ele) : hand2.push(ele);
+			if (idx % 2 !== 0) {
+				hand1.push(ele);
+			}
+			else {
+				hand2.push(ele);
+			}
 		});
 
-		player1.setCards(hand1);
-		player2.setCards(hand2);
+		player1.cards = hand1;
+		player2.cards = hand2;
 	};
 
 	/**
-		* Shuffles the cards using the Fisher-Yaters shuffle algorithm.
-		* 
-		* @param {Array} players An array containing each of the players
+		* Shuffles the deck of cards using the Fisher-Yaters shuffle algorithm.
 		* 
 		* @memberof Deck
 		*/
